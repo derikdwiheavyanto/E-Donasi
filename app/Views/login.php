@@ -18,7 +18,7 @@
 <!-- Right: Login Form -->
 <div class="lg:px-36 md:px-52 sm:px-8 w-full lg:w-1/2">
   <h1 class="text-2xl font-semibold mb-4">Login</h1>
-  <form action="/dashboard" method="GET">
+  <form action="/login" method="POST">
     <!-- Username Input -->
     <div class="mb-4">
       <label for="username" class="block text-gray-600">Username</label>
