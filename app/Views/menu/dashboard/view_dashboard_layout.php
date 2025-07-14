@@ -1,7 +1,7 @@
 <?= $this->extend('layout/layout'); ?>
 <?= $this->section('content'); ?>
 
-<?= $this->include('menu/dashboard/donatur/view_dashboard_pengurus'); ?>
+<?= $this->include('menu/dashboard/donatur/view_dashboard_donatur'); ?>
 
 <?= $this->endSection(); ?>
 

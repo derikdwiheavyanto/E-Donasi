@@ -13,7 +13,7 @@ use Config\Auth as AuthConfig;
  */
 $routes->get('/', [RedirectController::class, 'index']);
 $routes->get('/dashboard', [HomePengurus::class, 'index']);
-$routes->get('/dashboard-donatur', [HomePengurus::class, 'indexDonatur']);
+$routes->get('/dashboard-donatur', [HomeDonatur::class, 'indexDonatur']);
 $routes->get('/data-donatur', [DataDonatur::class, 'index']);
 $routes->get('/riwayat-donasi', [RiwayatDonasi::class, 'RiwayatDonasi']);
 $routes->get('/laporan-donasi', [LaporanDonasi::class, 'LaporanDonasi']);
