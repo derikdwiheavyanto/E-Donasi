@@ -16,8 +16,8 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="data-donatur">Data Donatur</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Riwayat Donasi</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Laporan Donasi</a>
+                                    <a class="nav-link" href="riwayat-donasi">Riwayat Donasi</a>
+                                    <a class="nav-link" href="laporan-donasi">Laporan Donasi</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">

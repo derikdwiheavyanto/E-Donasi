@@ -9,6 +9,6 @@ class DataDonatur extends BaseController
     public function index(): string
     {
 
-        return view('home/pengurus/view-data-donatur', ['title' => 'Data Donatur']);
+        return view('menu/data_donatur/view-data-donatur', ['title' => 'Data Donatur']);
     }
 }
