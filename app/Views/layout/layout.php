@@ -10,7 +10,7 @@
     <title>Dashboard - SB Admin</title>
 
     <!-- Ganti semua CDN ke file lokal -->
-    <link href="assets/css/simple-datatables.min.css" rel="stylesheet" />
+    <!-- <link href="assets/css/simple-datatables.min.css" rel="stylesheet" /> -->
     <link href="assets/css/styles.css" rel="stylesheet" />
     <!-- <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script> -->
 </head>
@@ -43,12 +43,12 @@
 
     <!-- JS lokal -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/scripts.js"></script>
+    <!-- <script src="assets/js/scripts.js"></script> -->
     <script src="assets/js/Chart.min.js"></script>
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script> -->
     <script src="assets/js/simple-datatables.min.js"></script>
     <script src="assets/js/datatables-simple-demo.js"></script>
+    <?php echo $this->renderSection('script'); ?>
 </body>
 
 </html>

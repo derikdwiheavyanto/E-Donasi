@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Controllers\BaseController;
+
+class RedirectController extends BaseController
+{
+    public function index()
+    {
+
+        return redirect()->to('/login');
+    }
+}

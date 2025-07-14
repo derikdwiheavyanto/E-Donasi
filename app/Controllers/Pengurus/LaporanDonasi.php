@@ -9,6 +9,6 @@ class LaporanDonasi extends BaseController
     public function LaporanDonasi(): string
     {
 
-        return view('home/pengurus/view-laporan', ['title' => 'Laporan Donasi']);
+        return view('menu/data_donatur/view-laporan', ['title' => 'Laporan Donasi']);
     }
 }

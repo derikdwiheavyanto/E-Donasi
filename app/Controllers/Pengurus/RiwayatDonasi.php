@@ -9,6 +9,6 @@ class RiwayatDonasi extends BaseController
     public function RiwayatDonasi(): string
     {
 
-        return view('home/pengurus/view_riwayat_donasi', ['title' => 'Riwayat Donasi']);
+        return view('menu/data_donatur/view_riwayat_donasi', ['title' => 'Riwayat Donasi']);
     }
 }
