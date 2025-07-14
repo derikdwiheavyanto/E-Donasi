@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\Donatur\HomeDonatur;
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\Pengurus\HomePengurus;
 use App\Controllers\Pengurus\DataDonatur;

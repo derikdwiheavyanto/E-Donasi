@@ -1,7 +1,11 @@
 <?= $this->extend('layout/layout'); ?>
 <?= $this->section('content'); ?>
 
-<?= $this->include('menu/dashboard/donatur/view_dashboard_donatur'); ?>
+<?php if (in_groups("pengurus")): ?>
+    <?= $this->include('menu/dashboard/pengurus/view_dashboard_pengurus'); ?>
+<?php else: ?>
+    <?= $this->include('menu/dashboard/donatur/view_dashboard_donatur'); ?>
+<?php endif; ?>
 
 <?= $this->endSection(); ?>
 
