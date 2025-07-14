@@ -16,17 +16,6 @@
                 <th>Tanggal Donasi</th>
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>Nama</th>
-                <th>Alamat</th>
-                <th>Keterangan</th>
-                <th>Umur</th>
-                <th>Jumlah Donasi</th>
-                <th>Tanggal Donasi</th>
-            </tr>
-        </tfoot>
-        <tbody>
             <tr>
                 <td>Tiger Nixon</td>
                 <td>Prapatan rungkut</td>
