@@ -1,7 +1,7 @@
 <?= $this->extend('layout/layout'); ?>
 <?= $this->section('content'); ?>
 
-<?php if (in_groups("pengurus")): ?>
+<?php if (in_groups('pengurus')): ?>
     <?= $this->include('menu/dashboard/pengurus/view_dashboard_pengurus'); ?>
 <?php else: ?>
     <?= $this->include('menu/dashboard/donatur/view_dashboard_donatur'); ?>
