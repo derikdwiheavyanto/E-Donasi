@@ -13,7 +13,7 @@ class DonasiSeeder extends Seeder
 
         for ($i = 0; $i < 20; $i++) {
             $data = [
-                'id_donatur' => $faker->randomElement([9]), // Pastikan user dengan ID 1-10 sudah ada di tabel `users`
+                'id_donatur' => $faker->randomElement([2]), // Pastikan user dengan ID 1-10 sudah ada di tabel `users`
                 'tanggal_donasi' => $faker->dateTimeBetween('2025-02-01', 'now')->format('Y-m-d'),
                 'nominal' => $faker->numberBetween(50000, 1000000),
                 'keterangan' => $faker->randomElement(['Donasi rutin', 'Bantuan bencana', 'Santunan yatim']),

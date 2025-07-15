@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <meta name="description" content="Dashboard E-Donasi" />
+    <meta name="author" content="Tim E-Donasi" />
+    <title>Dashboard - E-Donasi</title>
 
     <!-- Ganti semua CDN ke file lokal -->
     <!-- <link href="assets/css/simple-datatables.min.css" rel="stylesheet" /> -->
@@ -16,27 +16,33 @@
 </head>
 
 <body class="sb-nav-fixed">
+
     <!-- topbar -->
-    <?php echo view('layout/template/view_topbar'); ?>
+    <?= view('layout/template/view_topbar'); ?>
     <!-- end topbar -->
 
     <div id="layoutSidenav">
+        
         <!-- sidebar -->
-        <?php echo view('layout/template/view_sidebar'); ?>
+        <?php if (in_groups('pengurus')): ?>
+            <?= view('layout/template/view_sidebar_pengurus'); ?>
+        <?php elseif (in_groups('donatur')): ?>
+            <?= view('layout/template/view_sidebar_donatur'); ?>
+        <?php else: ?>
+            <div class="alert alert-danger m-3">Role pengguna tidak dikenali.</div>
+        <?php endif; ?>
         <!-- end sidebar -->
 
         <div id="layoutSidenav_content">
-            <!-- content -->
             <main>
                 <div class="container-fluid px-4">
-                    <!-- Render Content -->
-                    <?php echo $this->renderSection('content'); ?>
+                    <!-- Render isi halaman -->
+                    <?= $this->renderSection('content'); ?>
                 </div>
             </main>
-            <!-- end content -->
 
             <!-- footer -->
-            <?php echo view('layout/template/view_footer'); ?>
+            <?= view('layout/template/view_footer'); ?>
             <!-- end footer -->
         </div>
     </div>

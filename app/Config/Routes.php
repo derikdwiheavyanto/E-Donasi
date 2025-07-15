@@ -3,6 +3,9 @@
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\Pengurus\HomePengurus;
 use App\Controllers\Donatur\HomeDonatur;
+use App\Controllers\Donatur\InginDonasi;
+use App\Controllers\Donatur\Riwayat;
+use App\Controllers\Donatur\Laporan;
 use App\Controllers\Pengurus\DataDonatur;
 use App\Controllers\Pengurus\LaporanDonasi;
 use App\Controllers\Pengurus\RiwayatDonasi;
@@ -24,6 +27,9 @@ $routes->group('pengurus', ['filter' => 'role:pengurus'], function ($routes) {
 
 $routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {
     $routes->get('dashboard', [HomeDonatur::class, 'index']);
+    $routes->get('laporan-donatur', [Laporan::class, 'index']);
+    $routes->get('riwayat-donatur', [Riwayat::class, 'index']);
+    $routes->get('ingin-donasi', [InginDonasi::class, 'index']);
 });
 
 
@@ -41,11 +47,3 @@ $routes->group('', ['namespace' => 'App\Controllers\Auth'], static function ($ro
     $routes->get($reservedRoutes['register'], 'AuthController::register', ['as' => $reservedRoutes['register']]);
     $routes->post($reservedRoutes['register'], 'AuthController::attemptRegister');
 });
-
-// $routes->group('pengurus', ['filter' => 'role:pengurus'], function ($routes) {
-//     $routes->get('/dashboard', [HomePengurus::class, 'index']);
-// });
-
-// $routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {
-//     $routes->get('/dashboard-donatur', [HomePengurus::class, 'indexDonatur']);
-// });
