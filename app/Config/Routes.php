@@ -13,11 +13,18 @@ use Config\Auth as AuthConfig;
  * @var RouteCollection $routes
  */
 $routes->get('/', [RedirectController::class, 'index']);
-$routes->get('/dashboard', [HomePengurus::class, 'index']);
-$routes->get('/dashboard-donatur', [HomeDonatur::class, 'index']);
-$routes->get('/data-donatur', [DataDonatur::class, 'index']);
-$routes->get('/riwayat-donasi', [RiwayatDonasi::class, 'RiwayatDonasi']);
-$routes->get('/laporan-donasi', [LaporanDonasi::class, 'LaporanDonasi']);
+$routes->get('/dashboard', [RedirectController::class, 'indexDashboard']);
+
+$routes->group('pengurus', ['filter' => 'role:pengurus'], function ($routes) {
+    $routes->get('dashboard', [HomePengurus::class, 'index']);
+    $routes->get('data-donatur', [DataDonatur::class, 'index']);
+    $routes->get('riwayat-donasi', [RiwayatDonasi::class, 'RiwayatDonasi']);
+    $routes->get('laporan-donasi', [LaporanDonasi::class, 'LaporanDonasi']);
+});
+
+$routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {
+    $routes->get('dashboard', [HomeDonatur::class, 'index']);
+});
 
 
 $routes->group('', ['namespace' => 'App\Controllers\Auth'], static function ($routes) {
