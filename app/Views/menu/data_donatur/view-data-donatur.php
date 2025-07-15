@@ -8,158 +8,23 @@
     <table id="datatablesSimple">
         <thead>
             <tr>
+                <th>Tanggal Donasi</th>
                 <th>Nama</th>
                 <th>Alamat</th>
-                <th>Keterangan</th>
                 <th>Umur</th>
                 <th>Jumlah Donasi</th>
-                <th>Tanggal Donasi</th>
             </tr>
         </thead>
+        <?php foreach ($user as $key => $donatur): ?>
             <tr>
-                <td>Tiger Nixon</td>
+                <td><?= $donatur->created_at; ?></td>
+                <td><?= $donatur->username; ?></td>
                 <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
                 <td>61</td>
                 <td>1.000.000</td>
-                <td>12/03/2022</td>
             </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>cak trubus</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>Panti asuhan</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>Prapatan rungkut</td>
-                <td>pembangunan masjid</td>
-                <td>61</td>
-                <td>1.000.000</td>
-                <td>12/03/2022</td>
-            </tr>
+        <?php endforeach; ?>
+
         </tbody>
     </table>
 </div>
