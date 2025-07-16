@@ -51,10 +51,11 @@ class UserModel extends Model
 
     public function findDonatur()
     {
-        return $this->select('users.*')
+        return $this->select('users.username,users.created_at, users.address, SUM(donasi.nominal) as total')
             ->join('auth_groups_users', 'auth_groups_users.user_id = users.id')
             ->where('auth_groups_users.group_id', 2)
-            ->orderBy('users.created_at', 'DESC')
+            ->join('donasi', 'donasi.id_donatur = users.id', 'left')
+            ->groupBy('users.id')
             ->findAll();
     }
 

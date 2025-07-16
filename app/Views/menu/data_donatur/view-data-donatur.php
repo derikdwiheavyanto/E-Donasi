@@ -8,10 +8,9 @@
     <table id="datatablesSimple">
         <thead>
             <tr>
-                <th>Tanggal Donasi</th>
+                <th>Tanggal Mendaftar</th>
                 <th>Nama</th>
                 <th>Alamat</th>
-                <th>Umur</th>
                 <th>Jumlah Donasi</th>
             </tr>
         </thead>
@@ -20,8 +19,7 @@
                 <td><?= $donatur->created_at; ?></td>
                 <td><?= $donatur->username; ?></td>
                 <td>Prapatan rungkut</td>
-                <td>61</td>
-                <td>1.000.000</td>
+                <td><?= format_rupiah($donatur->total); ?></td>
             </tr>
         <?php endforeach; ?>
 

@@ -46,8 +46,6 @@ class HomePengurus extends BaseController
 
         $user = new UserModel;
 
-        $data = [];
-
         $data['jumlah_donatur'] = $user->where('role', 'donatur')->countAllResults();
 
 
