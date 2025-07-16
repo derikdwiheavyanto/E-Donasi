@@ -2,6 +2,7 @@
 
 namespace App\Database\Seeds;
 
+use App\Models\UserModel;
 use CodeIgniter\Database\Seeder;
 use Faker\Factory;
 
@@ -11,9 +12,16 @@ class DonasiSeeder extends Seeder
     {
         $faker = Factory::create('id_ID');
 
+        $userModel = new UserModel();
+
+        $user = $userModel->select('id')->where('id !=', 1)->findAll();
+        $userIds = array_column($user, 'id');
+
+
+
         for ($i = 0; $i < 20; $i++) {
             $data = [
-                'id_donatur' => $faker->randomElement([9]), // Pastikan user dengan ID 1-10 sudah ada di tabel `users`
+                'id_donatur' => $faker->randomElement($userIds),
                 'tanggal_donasi' => $faker->dateTimeBetween('2025-02-01', 'now')->format('Y-m-d'),
                 'nominal' => $faker->numberBetween(50000, 1000000),
                 'keterangan' => $faker->randomElement(['Donasi rutin', 'Bantuan bencana', 'Santunan yatim']),
