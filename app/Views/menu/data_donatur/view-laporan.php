@@ -26,7 +26,7 @@
         <button class="btn btn-primary w-100">Tampilkan</button>
       </div>
       <div class="col-md-2">
-        <a href="<?= base_url('pengurus/laporandonasi/exportExcel?bulan=' . $bulan . '&tahun=' . $tahun) ?>"
+        <a href="<?= base_url('pengurus/laporan-donasi/exportExcel?bulan=' . $bulan . '&tahun=' . $tahun) ?>"
           class="btn btn-success w-100">
           <i class="fas fa-file-excel"></i> Export Excel
         </a>

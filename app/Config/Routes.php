@@ -23,7 +23,7 @@ $routes->group('pengurus', ['filter' => 'role:pengurus'], function ($routes) {
     $routes->get('data-donatur', [DataDonatur::class, 'index']);
     $routes->get('riwayat-donasi', [RiwayatDonasi::class, 'RiwayatDonasi']);
     $routes->get('laporan-donasi', [LaporanDonasi::class, 'LaporanDonasi']);
-    $routes->get('laporandonasi/exportExcel', 'Pengurus\LaporanDonasi::exportExcel');
+    $routes->get('laporan-donasi/exportExcel', 'Pengurus\LaporanDonasi::exportExcel');
 
 });
 
