@@ -14,28 +14,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>12/12/2012</td>
-                <td>Rp.12.000.000</td>
-                <td>Tunai</td>
-                <td>Sukses</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>12/12/2012</td>
-                <td>Rp.12.000.000</td>
-                <td>E-walet</td>
-                <td>Sukses</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>12/12/2012</td>
-                <td>Rp.12.000.000</td>
-                <td>Transfer Bank</td>
-                <td>Sukses</td>
-            </tr>
+            <?php if (!empty($donasi)) : ?>
+                <?php $no = 1; ?>
+                <?php foreach ($donasi as $row) : ?>
+                    <tr>
+                        <th scope="row"><?= $no++; ?></th>
+                        <td><?= date('d/m/Y', strtotime($row['tanggal_donasi'])); ?></td>
+                        <td>Rp.<?= number_format($row['nominal'], 0, ',', '.'); ?></td>
+                        <td><?= $row['pembayaran']; ?></td>
+                        <td>Sukses</td> <!-- Jika belum ada kolom status, bisa ditulis manual -->
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <tr>
+                    <td colspan="5" class="text-center">Belum ada donasi.</td>
+                </tr>
+            <?php endif; ?>
         </tbody>
+        
     </table>
 </div>
 

@@ -8,8 +8,39 @@ class DonasiModel extends Model
 {
     protected $table = 'donasi';
     protected $primaryKey = 'id_donasi';
+    protected $allowedFields = ['id_donatur', 'tanggal_donasi', 'nominal', 'pembayaran'];
+    protected $useTimestamps = true;
 
-    
+
+    public function getTotalDonasiByUser($id_donatur)
+    {
+        return $this->where('id_donatur', $id_donatur)
+            ->selectSum('nominal')
+            ->first()['nominal'] ?? 0;
+    }
+
+    // app/Models/DonasiModel.php
+
+    public function getJumlahTransaksiDonasiByUser($id_donatur)
+    {
+        return $this->where('id_donatur', $id_donatur)->countAllResults();
+    }
+
+    // app/Models/DonasiModel.php
+
+    public function getDonasiTerakhirByUser($id_donatur)
+    {
+        return $this->where('id_donatur', $id_donatur)
+            ->orderBy('created_at', 'DESC')
+            ->first(); // Ambil 1 data terbaru
+    }
+
+
+
+    public function getRiwayatDonasiUser($user_id, $dircetion = "ASC",$limit = null)
+    {
+        return $this->where('id_donatur', $user_id)->limit($limit)->orderBy('created_at', $dircetion)->findAll();
+    }
 
     public function sumDonasi()
     {
@@ -53,5 +84,4 @@ class DonasiModel extends Model
             ->where('MONTH(tanggal_donasi)', $bulan)
             ->where('YEAR(tanggal_donasi)', $tahun);
     }
-
 }
