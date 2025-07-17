@@ -4,7 +4,7 @@ namespace App\Controllers\Auth;
 
 use CodeIgniter\Controller;
 use CodeIgniter\Session\Session;
-use Myth\Auth\Config\Auth as AuthConfig;
+use Config\Auth as AuthConfig;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserModel;
 
@@ -196,6 +196,83 @@ class AuthController extends Controller
         return redirect()->route('login')->with('message', lang('Auth.registerSuccess'));
     }
 
+    /**
+     * Activate account.
+     *
+     * @return mixed
+     */
+    public function activateAccount()
+    {
+        $users = model(UserModel::class);
+
+        // First things first - log the activation attempt.
+        $users->logActivationAttempt(
+            $this->request->getGet('token'),
+            $this->request->getIPAddress(),
+            (string) $this->request->getUserAgent()
+        );
+
+        $throttler = service('throttler');
+
+        if ($throttler->check(md5($this->request->getIPAddress()), 2, MINUTE) === false) {
+            return service('response')->setStatusCode(429)->setBody(lang('Auth.tooManyRequests', [$throttler->getTokentime()]));
+        }
+
+        $user = $users->where('activate_hash', $this->request->getGet('token'))
+            ->where('active', 0)
+            ->first();
+
+        if (null === $user) {
+            return redirect()->route('login')->with('error', lang('Auth.activationNoUser'));
+        }
+
+        $user->activate();
+
+        $users->save($user);
+
+        return redirect()->route('login')->with('message', lang('Auth.registerSuccess'));
+    }
+
+    /**
+     * Resend activation account.
+     *
+     * @return mixed
+     */
+    public function resendActivateAccount()
+    {
+        if ($this->config->requireActivation === null) {
+            return redirect()->route('login');
+        }
+
+        $throttler = service('throttler');
+
+        if ($throttler->check(md5($this->request->getIPAddress()), 2, MINUTE) === false) {
+            return service('response')->setStatusCode(429)->setBody(lang('Auth.tooManyRequests', [$throttler->getTokentime()]));
+        }
+
+        $login = urldecode($this->request->getGet('login'));
+        $type = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        $users = model(UserModel::class);
+
+        $user = $users->where($type, $login)
+            ->where('active', 0)
+            ->first();
+
+        if (null === $user) {
+            return redirect()->route('login')->with('error', lang('Auth.activationNoUser'));
+        }
+
+        $activator = service('activator');
+        $sent = $activator->send($user);
+
+        if (!$sent) {
+            return redirect()->back()->withInput()->with('error', $activator->error() ?? lang('Auth.unknownError'));
+        }
+
+        // Success!
+        return redirect()->route('login')->with('message', lang('Auth.activationSuccess'));
+    }
 
     protected function _render(string $view, array $data = [])
     {

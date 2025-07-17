@@ -3,6 +3,9 @@
 namespace Config;
 
 use CodeIgniter\Config\BaseService;
+use Config\Auth as AuthConfig;
+use Myth\Auth\Authentication\Activators\ActivatorInterface;
+use Myth\Auth\Authentication\Activators\UserActivator;
 
 /**
  * Services Configuration file.
@@ -29,4 +32,20 @@ class Services extends BaseService
      *     return new \CodeIgniter\Example();
      * }
      */
+
+      /**
+     * Returns an instance of the Activator.
+     */
+    public static function activator(?AuthConfig $config = null, bool $getShared = true): ActivatorInterface
+    {
+        if ($getShared) {
+            return self::getSharedInstance('activator', $config);
+        }
+
+        $config ??= config(AuthConfig::class);
+        $class = $config->requireActivation ?? UserActivator::class;
+
+        /** @var class-string<ActivatorInterface> $class */
+        return new $class($config);
+    }
 }
