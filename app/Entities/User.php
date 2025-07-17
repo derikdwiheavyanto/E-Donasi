@@ -31,9 +31,10 @@ class User extends \Myth\Auth\Entities\User
      * when they are accessed.
      */
     protected $casts = [
-        'username'         => 'string',
-        'email'            => 'string',
-        'active'           => 'boolean',
+        'username' => 'string',
+        'name' => 'string',
+        'email' => 'string',
+        'active' => 'boolean',
         'force_pass_reset' => 'boolean',
     ];
 
@@ -69,8 +70,8 @@ class User extends \Myth\Auth\Entities\User
             User would have a new password but still anyone with the
             reset-token would be able to change the password.
         */
-        $this->attributes['reset_hash']    = null;
-        $this->attributes['reset_at']      = null;
+        $this->attributes['reset_hash'] = null;
+        $this->attributes['reset_at'] = null;
         $this->attributes['reset_expires'] = null;
     }
 
@@ -128,7 +129,7 @@ class User extends \Myth\Auth\Entities\User
      */
     public function generateResetHash()
     {
-        $this->attributes['reset_hash']    = bin2hex(random_bytes(16));
+        $this->attributes['reset_hash'] = bin2hex(random_bytes(16));
         $this->attributes['reset_expires'] = date('Y-m-d H:i:s', time() + config('Auth')->resetTime);
 
         return $this;
@@ -155,7 +156,7 @@ class User extends \Myth\Auth\Entities\User
      */
     public function activate()
     {
-        $this->attributes['active']        = 1;
+        $this->attributes['active'] = 1;
         $this->attributes['activate_hash'] = null;
 
         return $this;
@@ -188,7 +189,7 @@ class User extends \Myth\Auth\Entities\User
      */
     public function ban(string $reason)
     {
-        $this->attributes['status']         = 'banned';
+        $this->attributes['status'] = 'banned';
         $this->attributes['status_message'] = $reason;
 
         return $this;

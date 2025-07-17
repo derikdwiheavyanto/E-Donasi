@@ -17,7 +17,7 @@
         <?php foreach ($user as $key => $donatur): ?>
             <tr>
                 <td><?= $donatur->created_at; ?></td>
-                <td><?= $donatur->username; ?></td>
+                <td><?= $donatur->name; ?></td>
                 <td>Prapatan rungkut</td>
                 <td><?= format_rupiah($donatur->total); ?></td>
             </tr>
@@ -25,7 +25,6 @@
 
         </tbody>
     </table>
-</div>
 </div>
 
 <?= $this->endSection(); ?>
