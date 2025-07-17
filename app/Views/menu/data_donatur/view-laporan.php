@@ -70,13 +70,19 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($donasi as $d): ?>
+          <?php if (!empty($donasi)): ?>
+            <?php foreach ($donasi as $d): ?>
+              <tr>
+                <td><?= $d['tanggal_donasi']; ?></td>
+                <td><?= $d['nama_donatur'] ?? '-'; ?></td>
+                <td><?= format_rupiah($d['nominal']); ?></td>
+              </tr>
+            <?php endforeach; ?>
+          <?php else: ?>
             <tr>
-              <td><?= $d['tanggal_donasi']; ?></td>
-              <td><?= $d['nama_donatur'] ?? '-'; ?></td>
-              <td><?= format_rupiah($d['nominal']); ?></td>
+              <td colspan="3" class="text-center">Tidak Ada Donasi Masuk</td>
             </tr>
-          <?php endforeach; ?>
+          <?php endif; ?>
         </tbody>
       </table>
       <?= $pager->links('donasi', 'bootstrap') ?>
@@ -96,13 +102,19 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($pengeluaran as $p): ?>
+          <?php if (!empty($pengeluaran)): ?>
+            <?php foreach ($pengeluaran as $p): ?>
+              <tr>
+                <td><?= $p['tanggal']; ?></td>
+                <td><?= $p['deskripsi']; ?></td>
+                <td><?= format_rupiah($p['jumlah']); ?></td>
+              </tr>
+            <?php endforeach; ?>
+          <?php else: ?>
             <tr>
-              <td><?= $p['tanggal']; ?></td>
-              <td><?= $p['deskripsi']; ?></td>
-              <td><?= format_rupiah($p['jumlah']); ?></td>
+              <td colspan="3" class="text-center">Tidak Ada Penggunaan Dana</td>
             </tr>
-          <?php endforeach; ?>
+          <?php endif; ?>
         </tbody>
       </table>
       <?= $pager->links('pengeluaran', 'bootstrap') ?>

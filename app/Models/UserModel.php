@@ -5,7 +5,7 @@ namespace App\Models;
 use CodeIgniter\Model;
 use Faker\Generator;
 use Myth\Auth\Authorization\GroupModel;
-use Myth\Auth\Entities\User;
+use App\Entities\User;
 
 /**
  * @method User|null first()
@@ -19,6 +19,7 @@ class UserModel extends Model
     protected $allowedFields = [
         'email',
         'username',
+        'name',
         'password_hash',
         'reset_hash',
         'reset_at',
@@ -51,7 +52,7 @@ class UserModel extends Model
 
     public function findDonatur()
     {
-        return $this->select('users.username,users.created_at, users.address, SUM(donasi.nominal) as total')
+        return $this->select('users.name,users.created_at, users.address, SUM(donasi.nominal) as total')
             ->join('auth_groups_users', 'auth_groups_users.user_id = users.id')
             ->where('auth_groups_users.group_id', 2)
             ->join('donasi', 'donasi.id_donatur = users.id', 'left')
@@ -147,6 +148,7 @@ class UserModel extends Model
     {
         return new User([
             'email' => $faker->email,
+            'name' => $faker->name,
             'username' => $faker->userName,
             'password' => bin2hex(random_bytes(16)),
         ]);
