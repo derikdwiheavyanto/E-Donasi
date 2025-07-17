@@ -33,6 +33,7 @@ $routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {
     $routes->get('riwayat-donatur', [Riwayat::class, 'index']);
     $routes->get('ingin-donasi', [InginDonasi::class, 'index']);
     $routes->post('donasi/simpan', [InginDonasi::class, 'create']);
+    $routes->post('donasi/payment', [InginDonasi::class, 'payment']);
 
 });
 

@@ -22,7 +22,7 @@
     <!-- end topbar -->
 
     <div id="layoutSidenav">
-        
+
         <!-- sidebar -->
         <?php if (in_groups('pengurus')): ?>
             <?= view('layout/template/view_sidebar_pengurus'); ?>
