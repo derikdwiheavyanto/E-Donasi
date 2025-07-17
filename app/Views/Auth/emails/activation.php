@@ -245,8 +245,8 @@
                                                             <!--[if mso]><table role="presentation" width="100%"><tr><td><![endif]-->
                                                             <h1 class="v-text-align v-font-size"
                                                                 style="margin: 0px; line-height: 140%; text-align: left; word-wrap: break-word; font-size: 18px; font-weight: 400;">
-                                                                <span><span><span><span><span><span>Exclusive Offer
-                                                                                        Inside!</span></span></span></span></span></span>
+                                                                <span><span><span><span><span><span>Activation
+                                                                                        Account</span></span></span></span></span></span>
                                                             </h1>
                                                             <!--[if mso]></td></tr></table><![endif]-->
 
@@ -290,8 +290,7 @@
                                                                 style="margin: 0px; color: #ffffff; line-height: 120%; text-align: left; word-wrap: break-word; font-size: 29px; font-weight: 400;">
                                                                 <span><span><span><span><span
                                                                                     style="line-height: 34.8px;"><strong><span
-                                                                                            style="line-height: 34.8px;">ACTIVATE<br />YOUR<br />ACCOUNT
-                                                                                            TODAY</span></strong></span></span></span></span></span>
+                                                                                            style="line-height: 34.8px;">ACTIVATE<br />YOUR<br />ACCOUNT</span></strong></span></span></span></span></span>
                                                             </h1>
                                                             <!--[if mso]></td></tr></table><![endif]-->
 
@@ -315,25 +314,12 @@
                                                                     <?= $name ?>,
                                                                 </p>
                                                                 <p style="line-height: 160%; margin: 0px;"></p>
-                                                                <p style="line-height: 160%; margin: 0px;">Time is
-                                                                    running out! As a valued member of the Unlayer
-                                                                    community, we're excited to offer you exclusive
-                                                                    benefits that you won't want to miss out on.</p>
-                                                                <p style="line-height: 160%; margin: 0px;"></p>
-                                                                <p style="line-height: 160%; margin: 0px;">Activate your
-                                                                    Unlayer account today to unlock:</p>
-                                                                <ol>
-                                                                    <li style="line-height: 22.4px;">Access to our
-                                                                        premium email newsletter templates</li>
-                                                                    <li style="line-height: 22.4px;">Advanced
-                                                                        customization features for stunning designs</li>
-                                                                    <li style="line-height: 22.4px;">Priority customer
-                                                                        support for all your inquiries</li>
-                                                                </ol>
-                                                                <p style="line-height: 160%; margin: 0px;">But hurry,
-                                                                    this limited-time offer won't be available for long!
-                                                                    Take action now to start creating breathtaking email
-                                                                    newsletters effortlessly.</p>
+                                                                <p style="line-height: 160%; margin: 0px;">Terima kasih
+                                                                    telah mendaftar di platform kami.
+
+                                                                    Untuk menyelesaikan proses pendaftaran, silakan klik
+                                                                    tombol di bawah ini untuk mengaktifkan akun Anda:
+                                                                </p>
                                                             </div>
 
                                                         </td>
@@ -379,9 +365,41 @@
 
                                                             <div class="v-text-align v-font-size"
                                                                 style="font-size: 14px; line-height: 160%; text-align: left; word-wrap: break-word;">
-                                                                <p style="line-height: 160%; margin: 0px;">Thank you for
-                                                                    choosing Unlayer! We're eager to see the incredible
-                                                                    newsletters you'll create.</p>
+                                                                <p style="line-height: 160%; margin: 0px;">Jika Anda
+                                                                    tidak merasa melakukan pendaftaran, Anda dapat
+                                                                    mengabaikan email ini.
+
+                                                                </p>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="v-container-padding-padding"
+                                                            style="overflow-wrap:break-word;word-break:break-word;padding:10px 43px 30px;font-family:'Raleway',sans-serif;"
+                                                            align="left">
+
+                                                            <div class="v-text-align v-font-size"
+                                                                style="font-size: 14px; line-height: 160%; text-align: left; word-wrap: break-word;">
+                                                                <p style="line-height: 160%; margin: 0px;"> Salam,
+
+
+                                                                </p>
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="v-container-padding-padding"
+                                                            style="overflow-wrap:break-word;word-break:break-word;padding:10px 43px 30px;font-family:'Raleway',sans-serif;"
+                                                            align="left">
+
+                                                            <div class="v-text-align v-font-size"
+                                                                style="font-size: 14px; line-height: 160%; text-align: left; word-wrap: break-word;">
+                                                                <p style="line-height: 160%; margin: 0px;"> Tim E-Donasi
+
+
+                                                                </p>
                                                             </div>
 
                                                         </td>
