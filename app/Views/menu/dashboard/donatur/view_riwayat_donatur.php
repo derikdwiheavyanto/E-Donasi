@@ -9,6 +9,7 @@
                 <th scope="col">No.</th>
                 <th scope="col">Tanggal</th>
                 <th scope="col">Jumlah Donasi</th>
+                <th scope="col">Pembayaran</th>
                 <th scope="col">Status</th>
             </tr>
         </thead>
@@ -17,18 +18,21 @@
                 <th scope="row">1</th>
                 <td>12/12/2012</td>
                 <td>Rp.12.000.000</td>
+                <td>Tunai</td>
                 <td>Sukses</td>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td>12/12/2012</td>
                 <td>Rp.12.000.000</td>
+                <td>E-walet</td>
                 <td>Sukses</td>
             </tr>
             <tr>
                 <th scope="row">3</th>
                 <td>12/12/2012</td>
                 <td>Rp.12.000.000</td>
+                <td>Transfer Bank</td>
                 <td>Sukses</td>
             </tr>
         </tbody>

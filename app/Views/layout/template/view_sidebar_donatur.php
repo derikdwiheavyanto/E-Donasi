@@ -6,15 +6,15 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link" href="/ingin-donasi">
+                <a class="nav-link" href="ingin-donasi">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Ingin Donasi ?
                 </a>
-                <a class="nav-link" href="/riwayat-donatur">
+                <a class="nav-link" href="riwayat-donatur">
                     <div class="sb-nav-link-icon"><i class="fas fa-donate"></i></div>
                     Riwayat Donasi
                 </a>
-                <a class="nav-link" href="/laporan-donatur">
+                <a class="nav-link" href="laporan-donatur">
                     <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
                     Laporan
                 </a>
