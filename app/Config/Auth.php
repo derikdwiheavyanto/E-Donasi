@@ -348,8 +348,8 @@ class Auth extends \Myth\Auth\Config\Auth
      */
     public $userActivators = [
         'Myth\Auth\Authentication\Activators\EmailActivator' => [
-            'fromEmail' => 'edonasi20@gmail.com',
-            'fromName' => 'E-Donasi',
+            'fromEmail' => null,
+            'fromName' => null,
         ],
     ];
 
