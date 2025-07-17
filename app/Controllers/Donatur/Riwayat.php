@@ -9,10 +9,10 @@ class Riwayat extends BaseController
 {
     public function index(): string
     {
-         $donasiModel = model(DonasiModel::class);
+        $donasiModel = model(DonasiModel::class);
 
         $donasi = $donasiModel->getRiwayatDonasiUser(user_id());
 
-        return view('menu/dashboard/donatur/view_riwayat_donatur', ['title' => 'Riwayat Donatur', 'donasi' => $donasi]);
+        return view('menu/donatur/view_riwayat_donatur', ['title' => 'Riwayat Donatur', 'donasi' => $donasi]);
     }
 }

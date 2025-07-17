@@ -13,12 +13,13 @@ class InginDonasi extends BaseController
 
         $donasi = $donasi->getRiwayatDonasiUser(user_id());
 
-      
 
-        return view('menu/dashboard/donatur/view_ingin_donasi', ['title' => 'Formulir Donasi']);
+
+        return view('menu/donatur/view_ingin_donasi', ['title' => 'Formulir Donasi']);
     }
 
-    public function create(){
+    public function create()
+    {
 
         $donasi = model(DonasiModel::class);
         $donasi->save([

@@ -10,6 +10,6 @@ class DataDonatur extends BaseController
     public function index(): string
     {
         $user = new UserModel;
-        return view('menu/data_donatur/view-data-donatur', ['title' => 'Data Donatur', 'user' => $user->findDonatur()]);
+        return view('menu/pengurus/data_donatur/view-data-donatur', ['title' => 'Data Donatur', 'user' => $user->findDonatur()]);
     }
 }

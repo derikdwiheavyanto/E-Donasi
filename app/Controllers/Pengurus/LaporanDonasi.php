@@ -43,7 +43,7 @@ class LaporanDonasi extends BaseController
         ];
 
 
-        return view('menu/data_donatur/view-laporan', $data);
+        return view('menu/pengurus/data_donatur/view-laporan', $data);
     }
     public function exportExcel()
     {
