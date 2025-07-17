@@ -45,13 +45,13 @@ class Auth extends \Myth\Auth\Config\Auth
      * @var array
      */
     public $reservedRoutes = [
-        'login'                   => 'login',
-        'logout'                  => 'logout',
-        'register'                => 'register',
-        'activate-account'        => 'activate-account',
+        'login' => 'login',
+        'logout' => 'logout',
+        'register' => 'register',
+        'activate-account' => 'activate-account',
         'resend-activate-account' => 'resend-activate-account',
-        'forgot'                  => 'forgot',
-        'reset-password'          => 'reset-password',
+        'forgot' => 'forgot',
+        'reset-password' => 'reset-password',
     ];
 
     /**
@@ -73,11 +73,11 @@ class Auth extends \Myth\Auth\Config\Auth
      * @var array
      */
     public $views = [
-        'login'           => 'App\Views\Auth\login',
-        'register'        => 'App\Views\Auth\register',
-        'forgot'          => 'App\Views\Auth\forgot',
-        'reset'           => 'App\Views\Auth\reset',
-        'emailForgot'     => 'App\Views\Auth\emails\forgot',
+        'login' => 'App\Views\Auth\login',
+        'register' => 'App\Views\Auth\register',
+        'forgot' => 'App\Views\Auth\forgot',
+        'reset' => 'App\Views\Auth\reset',
+        'emailForgot' => 'App\Views\Auth\emails\forgot',
         'emailActivation' => 'App\Views\Auth\emails\activation',
     ];
 
@@ -186,7 +186,7 @@ class Auth extends \Myth\Auth\Config\Auth
      * @var string|null Name of the ActivatorInterface class
      */
     // public $requireActivation = 'Myth\Auth\Authentication\Activators\EmailActivator';
-    public $requireActivation = null;
+    public $requireActivation = 'Myth\Auth\Authentication\Activators\EmailActivator';
 
     /**
      * --------------------------------------------------------------------
@@ -348,8 +348,8 @@ class Auth extends \Myth\Auth\Config\Auth
      */
     public $userActivators = [
         'Myth\Auth\Authentication\Activators\EmailActivator' => [
-            'fromEmail' => null,
-            'fromName'  => null,
+            'fromEmail' => 'edonasi20@gmail.com',
+            'fromName' => 'E-Donasi',
         ],
     ];
 
@@ -365,7 +365,7 @@ class Auth extends \Myth\Auth\Config\Auth
     public $userResetters = [
         'Myth\Auth\Authentication\Resetters\EmailResetter' => [
             'fromEmail' => null,
-            'fromName'  => null,
+            'fromName' => null,
         ],
     ];
 
