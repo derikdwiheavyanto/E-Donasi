@@ -312,7 +312,7 @@
                                                             <div class="v-text-align v-font-size"
                                                                 style="font-size: 14px; line-height: 160%; text-align: left; word-wrap: break-word;">
                                                                 <p style="line-height: 160%; margin: 0px;">Dear
-                                                                    <?= $users->username ?>,
+                                                                    <?= $name ?>,
                                                                 </p>
                                                                 <p style="line-height: 160%; margin: 0px;"></p>
                                                                 <p style="line-height: 160%; margin: 0px;">Time is
