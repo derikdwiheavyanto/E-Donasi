@@ -2,8 +2,18 @@
 <?= $this->section('content'); ?>
 
 <div class="container-fluid">
-    <h1 class="mt-4">Dashboard Donatur</h1>
-    <p class="mb-4 text-muted">Terima kasih atas partisipasi Anda dalam program donasi kami.</p>
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="mt-4">Dashboard Donatur</h1>
+            <p class="mb-4 text-muted">Terima kasih atas partisipasi Anda dalam program donasi kami.</p>
+        </div>
+        <div class="text-center mb-4 col-md-6 d-flex align-items-center justify-content-end">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDonasi">
+                Donasi Sekarang
+            </button>
+        </div>
+    </div><!-- TOMBOL DONASI -->
+
 
     <!-- STATISTIC CARDS -->
     <div class="row">
@@ -89,6 +99,30 @@
         <div class="card-body">
             <canvas id="donasiDonaturChart" width="100%" height="30"></canvas>
         </div>
+    </div>
+</div>
+
+<!-- MODAL FORM DONASI -->
+<div class="modal fade" id="modalDonasi" tabindex="-1" aria-labelledby="modalDonasiLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="/donatur/donasi/payment" method="post" class="modal-content">
+            <?= csrf_field() ?>
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalDonasiLabel">Masukkan Nominal Donasi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nominal">Nominal (Rp)</label>
+                    <input type="number" name="nominal" id="nominal" class="form-control" placeholder="Contoh: 50000"
+                        min="1000" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Lanjutkan</button>
+            </div>
+        </form>
     </div>
 </div>
 <?= $this->endSection(); ?>

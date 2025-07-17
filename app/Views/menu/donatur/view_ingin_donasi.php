@@ -3,7 +3,7 @@
 
 <div class="container-fluid" style="margin-top: 20px;">
     <h3>Form Donasi</h3>
-    <form action="/donatur/donasi/simpan" method="post" enctype="multipart/form-data">
+    <form action="/donatur/donasi/payment" method="post" enctype="multipart/form-data">
         <?= csrf_field() ?>
         <div class="mb-3">
             <label for="jumlah" class="form-label">Jumlah Donasi</label>
