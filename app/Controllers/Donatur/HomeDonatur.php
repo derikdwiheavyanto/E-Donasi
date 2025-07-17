@@ -20,14 +20,14 @@ class HomeDonatur extends BaseController
         $total_donasi = $donasiModel->getTotalDonasiByUser($id_donatur);
         $jumlah_transaksi = $donasiModel->getJumlahTransaksiDonasiByUser($id_donatur);
         $donasi_terakhir = $donasiModel->getDonasiTerakhirByUser($id_donatur);
-        $donasi = $donasiModel->getRiwayatDonasiUser(user_id(),'DESC',5);
+        $donasi = $donasiModel->getRiwayatDonasiUser(user_id(), 'DESC', 5);
 
 
-        return view('menu/dashboard/donatur/view_dashboard_donatur', [
+        return view('menu/donatur/view_dashboard_donatur', [
             'title' => 'Dashboard Donatur',
             'total_donasi' => $total_donasi,
             'jumlah_transaksi' => $jumlah_transaksi,
-            'donasi_terakhir' => $donasi_terakhir,
+            'donasi_terakhir' => $donasi_terakhir ?? ['nominal' => 0, 'tanggal_donasi' => 'Belum ada donasi'],
             'donasi' => $donasi
         ]);
     }

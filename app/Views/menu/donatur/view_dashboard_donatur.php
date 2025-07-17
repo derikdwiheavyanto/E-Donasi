@@ -11,7 +11,7 @@
             <div class="card bg-primary text-white mb-4">
                 <div class="card-body">Total Donasi Anda</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="text-white"><?= format_rupiah($total_donasi) ?></span>
+                    <span class="text-white"><?= format_rupiah($total_donasi) ?? format_rupiah(0) ?></span>
                     <i class="fas fa-users"></i>
                 </div>
             </div>
@@ -29,7 +29,8 @@
             <div class="card bg-info text-white mb-4">
                 <div class="card-body">Donasi Terakhir</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="text-white"><?= format_rupiah($donasi_terakhir['nominal']) ?></span>
+                    <span
+                        class="text-white"><?= format_rupiah($donasi_terakhir['nominal']) ?? format_rupiah(0) ?></span>
                     <i class="fas fa-chart-line"></i>
                 </div>
             </div>
@@ -38,7 +39,7 @@
             <div class="card bg-warning text-white mb-4">
                 <div class="card-body">Tanggal Donasi Terakhir</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="text-white"><?= $donasi_terakhir['tanggal_donasi'] ?></span>
+                    <span class="text-white"><?= $donasi_terakhir['tanggal_donasi'] ?? 'Belum ada donasi' ?></span>
                     <i class="fas fa-user-plus"></i>
                 </div>
             </div>
@@ -61,8 +62,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($donasi)) : ?>
-                        <?php foreach ($donasi as $row) : ?>
+                    <?php if (!empty($donasi)): ?>
+                        <?php foreach ($donasi as $row): ?>
                             <tr>
                                 <td><?= date('d/m/Y', strtotime($row['tanggal_donasi'])); ?></td>
                                 <td>Rp.<?= number_format($row['nominal'], 0, ',', '.'); ?></td>
@@ -70,7 +71,7 @@
                                 <td>Sukses</td> <!-- Jika belum ada kolom status, bisa ditulis manual -->
                             </tr>
                         <?php endforeach; ?>
-                    <?php else : ?>
+                    <?php else: ?>
                         <tr>
                             <td colspan="5" class="text-center">Belum ada donasi.</td>
                         </tr>
