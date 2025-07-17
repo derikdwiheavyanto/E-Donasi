@@ -32,6 +32,8 @@ $routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {
     $routes->get('laporan-donatur', [Laporan::class, 'index']);
     $routes->get('riwayat-donatur', [Riwayat::class, 'index']);
     $routes->get('ingin-donasi', [InginDonasi::class, 'index']);
+    $routes->post('donasi/simpan', [InginDonasi::class, 'create']);
+
 });
 
 

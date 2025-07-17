@@ -11,7 +11,7 @@
             <div class="card bg-primary text-white mb-4">
                 <div class="card-body">Total Donasi Anda</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="text-white">Rp 3.000.000</span>
+                    <span class="text-white"><?= format_rupiah($total_donasi) ?></span>
                     <i class="fas fa-users"></i>
                 </div>
             </div>
@@ -20,7 +20,7 @@
             <div class="card bg-success text-white mb-4">
                 <div class="card-body">Jumlah Donasi</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="text-white">10 Kali</span>
+                    <span class="text-white"><?= $jumlah_transaksi ?> Kali</span>
                     <i class="fas fa-donate"></i>
                 </div>
             </div>
@@ -29,7 +29,7 @@
             <div class="card bg-info text-white mb-4">
                 <div class="card-body">Donasi Terakhir</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="text-white">Rp 285.000</span>
+                    <span class="text-white"><?= format_rupiah($donasi_terakhir['nominal']) ?></span>
                     <i class="fas fa-chart-line"></i>
                 </div>
             </div>
@@ -38,7 +38,7 @@
             <div class="card bg-warning text-white mb-4">
                 <div class="card-body">Tanggal Donasi Terakhir</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <span class="text-white">15/7/2000</span>
+                    <span class="text-white"><?= $donasi_terakhir['tanggal_donasi'] ?></span>
                     <i class="fas fa-user-plus"></i>
                 </div>
             </div>
@@ -55,30 +55,26 @@
                 <thead class="thead-light">
                     <tr>
                         <th>Tanggal</th>
-                        <th>Program</th>
                         <th>Nominal</th>
+                        <th>Pembayaran</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10 Juli 2025</td>
-                        <td>Bantuan Pendidikan</td>
-                        <td>Rp 500.000</td>
-                        <td><span class="badge bg-success">Terverifikasi</span></td>
-                    </tr>
-                    <tr>
-                        <td>01 Juli 2025</td>
-                        <td>Santunan Yatim</td>
-                        <td>Rp 300.000</td>
-                        <td><span class="badge bg-success">Terverifikasi</span></td>
-                    </tr>
-                    <tr>
-                        <td>15 Juni 2025</td>
-                        <td>Donasi Masjid</td>
-                        <td>Rp 400.000</td>
-                        <td><span class="badge bg-success">Terverifikasi</span></td>
-                    </tr>
+                    <?php if (!empty($donasi)) : ?>
+                        <?php foreach ($donasi as $row) : ?>
+                            <tr>
+                                <td><?= date('d/m/Y', strtotime($row['tanggal_donasi'])); ?></td>
+                                <td>Rp.<?= number_format($row['nominal'], 0, ',', '.'); ?></td>
+                                <td><?= $row['pembayaran']; ?></td>
+                                <td>Sukses</td> <!-- Jika belum ada kolom status, bisa ditulis manual -->
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <tr>
+                            <td colspan="5" class="text-center">Belum ada donasi.</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
