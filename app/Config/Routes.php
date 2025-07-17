@@ -23,6 +23,8 @@ $routes->group('pengurus', ['filter' => 'role:pengurus'], function ($routes) {
     $routes->get('data-donatur', [DataDonatur::class, 'index']);
     $routes->get('riwayat-donasi', [RiwayatDonasi::class, 'RiwayatDonasi']);
     $routes->get('laporan-donasi', [LaporanDonasi::class, 'LaporanDonasi']);
+    $routes->get('laporandonasi/exportExcel', 'Pengurus\LaporanDonasi::exportExcel');
+
 });
 
 $routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {
@@ -35,7 +37,7 @@ $routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {
 
 $routes->group('', ['namespace' => 'App\Controllers\Auth'], static function ($routes) {
     // Load the reserved routes from Auth.php
-    $config         = config(AuthConfig::class);
+    $config = config(AuthConfig::class);
     $reservedRoutes = $config->reservedRoutes;
 
     // Login/out

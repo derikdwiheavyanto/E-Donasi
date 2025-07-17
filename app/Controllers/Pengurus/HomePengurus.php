@@ -11,9 +11,9 @@ class HomePengurus extends BaseController
 {
     public function index(): string
     {
-        $user = new UserModel;
-        $donasi = new DonasiModel();
-        $penggunaan_dana = new PenggunaanDanaModel();
+        $user = model(UserModel::class);
+        $donasi = model(DonasiModel::class);
+        $penggunaan_dana = model(PenggunaanDanaModel::class);
 
         $data = [];
 
@@ -45,8 +45,6 @@ class HomePengurus extends BaseController
     {
 
         $user = new UserModel;
-
-        $data = [];
 
         $data['jumlah_donatur'] = $user->where('role', 'donatur')->countAllResults();
 

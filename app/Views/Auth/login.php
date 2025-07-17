@@ -4,21 +4,7 @@
   <h2 class="login-title mb-4">Log in</h2>
 
   <!-- GLOBAL ERROR MESSAGE -->
-  <?php if (session()->getFlashdata('error')) : ?>
-    <div class="alert alert-danger">
-      <?= session()->getFlashdata('error') ?>
-    </div>
-  <?php endif; ?>
-
-  <?php if (session()->getFlashdata('errors')) : ?>
-    <div class="alert alert-danger">
-      <ul class="mb-0">
-        <?php foreach (session()->getFlashdata('errors') as $error) : ?>
-          <li><?= esc($error) ?></li>
-        <?php endforeach ?>
-      </ul>
-    </div>
-  <?php endif; ?>
+  <?= view('Auth/_message_block') ?>
 
   <form action="<?= url_to('login') ?>" method="post">
     <?= csrf_field() ?>
@@ -29,7 +15,7 @@
         class="form-control <?= session('errors.login') ? 'is-invalid' : '' ?>"
         placeholder="Enter <?= $config->validFields === ['email'] ? 'email' : 'email or username' ?>"
         value="<?= old('login') ?>" autocomplete="off">
-      <?php if (session('errors.login')) : ?>
+      <?php if (session('errors.login')): ?>
         <div class="invalid-feedback"><?= session('errors.login') ?></div>
       <?php endif; ?>
     </div>
@@ -37,9 +23,9 @@
     <div class="form-group mb-4">
       <label for="password">Password</label>
       <input type="password" name="password" id="password"
-        class="form-control <?= session('errors.password') ? 'is-invalid' : '' ?>"
-        placeholder="Enter your password" autocomplete="off">
-      <?php if (session('errors.password')) : ?>
+        class="form-control <?= session('errors.password') ? 'is-invalid' : '' ?>" placeholder="Enter your password"
+        autocomplete="off">
+      <?php if (session('errors.password')): ?>
         <div class="invalid-feedback"><?= session('errors.password') ?></div>
       <?php endif; ?>
     </div>
