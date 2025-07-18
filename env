@@ -20,17 +20,22 @@
 # APP
 #--------------------------------------------------------------------
 
-MIDTRANS_CLIENT_KEY=
-MIDTRANS_SERVER_KEY=
-MIDTRANS_IS_PRODUCTION=false
-MIDTRANS_IS_SANITIZED=true
-MIDTRANS_IS_3DS=true
 
 # app.baseURL = ''
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''
 # app.forceGlobalSecureRequests = false
 # app.CSPEnabled = false
+
+#--------------------------------------------------------------------
+# MIDTRANS
+#--------------------------------------------------------------------
+
+MIDTRANS_CLIENT_KEY= your_client_key
+MIDTRANS_SERVER_KEY= your_server_key
+MIDTRANS_IS_PRODUCTION=false
+MIDTRANS_IS_SANITIZED=true
+MIDTRANS_IS_3DS=true
 
 #--------------------------------------------------------------------
 # DATABASE
