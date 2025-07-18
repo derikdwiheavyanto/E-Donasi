@@ -10,8 +10,9 @@
             <!-- Form tersembunyi untuk submit status transaksi -->
             <form id="submit-form" method="post" action="/donatur/donasi/simpan">
                 <?= csrf_field() ?>
+
+                <input type="hidden" name="order_id" value="<?= esc($order_id) ?>">
                 <input type="hidden" name="nominal" value="<?= esc($nominal) ?>">
-                <input type="hidden" name="pembayaran" value="<?= esc($pembayaran) ?>">
                 <input type="hidden" name="snap_token" value="<?= esc($snap_token) ?>">
                 <input type="hidden" name="transaction_status" id="transaction_status" value="">
             </form>
@@ -39,11 +40,9 @@
     window.snap.embed("<?= $snap_token ?>", {
         embedId: "snap-container",
         onSuccess: function (result) {
-            document.getElementById('transaction_status').value = result.transaction_status;
             document.getElementById('submit-form').submit();
         },
         onPending: function (result) {
-            document.getElementById('transaction_status').value = result.transaction_status;
             document.getElementById('submit-form').submit();
         },
         onError: function (result) {
