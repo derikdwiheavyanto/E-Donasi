@@ -20,6 +20,12 @@
 # APP
 #--------------------------------------------------------------------
 
+MIDTRANS_CLIENT_KEY=SB-Mid-client-MJdMC5wzpihb9jDT
+MIDTRANS_SERVER_KEY=SB-Mid-server-qTRiB-TVsg4kTiJEwzs-lTte
+MIDTRANS_IS_PRODUCTION=false
+MIDTRANS_IS_SANITIZED=true
+MIDTRANS_IS_3DS=true
+
 # app.baseURL = ''
 # If you have trouble with `.`, you could also use `_`.
 # app_baseURL = ''
