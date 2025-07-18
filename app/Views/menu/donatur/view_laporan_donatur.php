@@ -158,7 +158,6 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('script'); ?>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('chartDonasi').getContext('2d');
     const chart = new Chart(ctx, {
