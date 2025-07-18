@@ -6,10 +6,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link" href="ingin-donasi">
+                <!-- <a class="nav-link" href="ingin-donasi">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Ingin Donasi ?
-                </a>
+                </a> -->
                 <a class="nav-link" href="riwayat-donatur">
                     <div class="sb-nav-link-icon"><i class="fas fa-donate"></i></div>
                     Riwayat Donasi

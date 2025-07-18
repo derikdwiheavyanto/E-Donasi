@@ -14,25 +14,28 @@
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($donasi)) : ?>
+            <?php if (!empty($donasi)): ?>
                 <?php $no = 1; ?>
-                <?php foreach ($donasi as $row) : ?>
+                <?php foreach ($donasi as $row): ?>
                     <tr>
                         <th scope="row"><?= $no++; ?></th>
                         <td><?= date('d/m/Y', strtotime($row['tanggal_donasi'])); ?></td>
                         <td>Rp.<?= number_format($row['nominal'], 0, ',', '.'); ?></td>
                         <td><?= $row['pembayaran']; ?></td>
-                        <td>Sukses</td> <!-- Jika belum ada kolom status, bisa ditulis manual -->
+                        <td><?= $row['status'] == "settlement" ? "Sukses" : $row['status']; ?></td>
+                        <!-- Jika belum ada kolom status, bisa ditulis manual -->
                     </tr>
                 <?php endforeach; ?>
-            <?php else : ?>
+            <?php else: ?>
                 <tr>
                     <td colspan="5" class="text-center">Belum ada donasi.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
-        
+
     </table>
+    <?= $pager->links('riwayat_donasi', 'bootstrap') ?>
+
 </div>
 
 <?= $this->endSection(); ?>

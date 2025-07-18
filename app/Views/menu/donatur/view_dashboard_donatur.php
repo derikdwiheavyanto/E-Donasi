@@ -4,7 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
-            <h1 class="mt-4">Dashboard Donatur</h1>
+            <h1 class="mt-4"><?= $title; ?></h1>
             <p class="mb-4 text-muted">Terima kasih atas partisipasi Anda dalam program donasi kami.</p>
         </div>
         <div class="text-center mb-4 col-md-6 d-flex align-items-center justify-content-end">
