@@ -10,7 +10,7 @@
             <div class="card bg-success text-white shadow">
                 <div class="card-body">
                     Total Donasi Masuk
-                    <div class="h4 mt-2">Rp. 12.500.000</div>
+                    <div class="h4 mt-2"><?= format_rupiah($total_donasi_masuk); ?></div>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
             <div class="card bg-danger text-white shadow">
                 <div class="card-body">
                     Total Dana Terpakai
-                    <div class="h4 mt-2">Rp. 7.300.000</div>
+                    <div class="h4 mt-2"><?= format_rupiah($total_donasi_terpakai); ?></div>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="card bg-info text-white shadow">
                 <div class="card-body">
                     Sisa Dana
-                    <div class="h4 mt-2">Rp. 5.200.000</div>
+                    <div class="h4 mt-2"><?= format_rupiah($sisa_dana); ?></div>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <div class="card bg-primary text-white shadow">
                 <div class="card-body">
                     Jumlah Donatur
-                    <div class="h4 mt-2">35 Orang</div>
+                    <div class="h4 mt-2"><?= $jumlah_user; ?></div>
                 </div>
             </div>
         </div>
@@ -49,11 +49,11 @@
                 <form class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-2" method="get">
                     <div class="form-group mb-0">
                         <label for="start" class="form-label mb-1">Tanggal Mulai</label>
-                        <input type="date" class="form-control form-control-sm" name="start" id="start">
+                        <input type="date" class="form-control form-control-sm" name="start" id="start" value="<?= esc($start) ?>">
                     </div>
                     <div class="form-group mb-0">
                         <label for="end" class="form-label mb-1">Tanggal Akhir</label>
-                        <input type="date" class="form-control form-control-sm" name="end" id="end">
+                        <input type="date" class="form-control form-control-sm" name="end" id="end" value="<?= esc($end) ?>">
                     </div>
                     <div class="d-flex align-items-end">
                         <button type="submit" class="btn btn-sm btn-primary mt-md-4">Terapkan</button>
@@ -65,11 +65,16 @@
         <div class="card-body">
             <h6 class="mb-3">Progress Penggunaan Dana</h6>
             <div class="progress" style="height: 25px;">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 58%;" aria-valuenow="58"
-                    aria-valuemin="0" aria-valuemax="100">
-                    58% Dana Digunakan
+                <div class="progress-bar bg-success"
+                    role="progressbar"
+                    style="width: <?= $persentase_terpakai ?>%;"
+                    aria-valuenow="<?= $persentase_terpakai ?>"
+                    aria-valuemin="0"
+                    aria-valuemax="100">
+                    <?= $persentase_terpakai ?>% Dana Digunakan
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -98,22 +103,56 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2025-07-01</td>
-                        <td>Pembelian sembako</td>
-                        <td>Rp. 1.500.000</td>
-                        <td><a href="#">Lihat</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2025-06-25</td>
-                        <td>Renovasi atap</td>
-                         <td>Rp. 5.800.000</td>
-                        <td><a href="#">Lihat</a></td>
-                    </tr>
+                    <?php if (!empty($penggunaan)): ?>
+                        <?php
+                        $perPage = count($penggunaan);
+                        $currentPage = $pager->getCurrentPage('penggunaan');
+                        $startIndex = ($currentPage - 1) * $perPage;
+                        ?>
+                        <?php foreach ($penggunaan as $index => $p): ?>
+                            <tr>
+                                <td><?= $startIndex + $index + 1 ?></td>
+                                <td><?= $p['tanggal'] ?></td>
+                                <td><?= $p['deskripsi'] ?></td>
+                                <td><?= format_rupiah($p['jumlah']) ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-info"
+                                        data-bs-toggle="modal"
+                                        data-bs-target=<?= "#detailModal" . $index + 1 ?>>
+                                        Lihat 
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" class="text-center">Tidak Ada Penggunaan Dana</td>
+                        </tr>
+                    <?php endif; ?>
+
                 </tbody>
             </table>
+            <?= $pager->links('penggunaan', 'bootstrap') ?>
+
+            <?php foreach ($penggunaan as $index => $p): ?>
+
+                <div class="modal fade" id="detailModal<?= $index + 1 ?>" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="detailModalLabel">Detail Penggunaan Dana</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mt-3">
+                                    <strong>Foto Bukti:</strong><br>
+                                    <img id="modalFoto" style="width: 100%;" src=<?= $p['bukti_foto'] ?> >           
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 
@@ -164,8 +203,7 @@
         type: 'line',
         data: {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'],
-            datasets: [
-                {
+            datasets: [{
                     label: 'Dana Masuk (Rp)',
                     data: [2000000, 1500000, 1800000, 2200000, 1200000, 2000000, 1000000],
                     borderColor: 'rgba(54, 162, 235, 1)',
@@ -188,7 +226,7 @@
             plugins: {
                 tooltip: {
                     callbacks: {
-                        label: function (context) {
+                        label: function(context) {
                             let label = context.dataset.label || '';
                             if (label) {
                                 label += ': ';
@@ -205,7 +243,7 @@
                 y: {
                     beginAtZero: true,
                     ticks: {
-                        callback: function (value) {
+                        callback: function(value) {
                             return 'Rp. ' + value.toLocaleString();
                         }
                     }
