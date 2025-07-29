@@ -24,7 +24,7 @@ class InginDonasi extends BaseController
 
         $donasi = model(DonasiModel::class);
         $order_id = $this->request->getPost('order_id');
-        $snap_token = $this->request->getPost('snap_token');
+
         /** @var \stdClass $status */
         $status = Transaction::status($order_id);
         $donasi->save([

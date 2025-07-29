@@ -16,7 +16,7 @@
                 </a>
                 <a class="nav-link" href="laporan-donatur">
                     <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
-                    Laporan
+                    Transparansi Donasi
                 </a>
             </div>
         </div>

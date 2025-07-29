@@ -6,7 +6,7 @@
         <div class="col-sm-6 offset-sm-3">
 
             <div class="card">
-                <h2 class="card-header"><?=lang('Auth.forgotPassword')?></h2>
+                <h2 class="bcard-header"><?=lang('Auth.forgotPassword')?></h2>
                 <div class="card-body">
 
                     <?= view('App\Views\Auth\_message_block') ?>

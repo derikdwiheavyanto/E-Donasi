@@ -33,6 +33,7 @@ class User extends \Myth\Auth\Entities\User
      * when they are accessed.
      */
     protected $casts = [
+        'id' => 'integer',
         'username' => 'string',
         'name' => 'string',
         'email' => 'string',
