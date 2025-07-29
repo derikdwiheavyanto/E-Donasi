@@ -20,6 +20,8 @@ class UserModel extends Model
         'email',
         'username',
         'name',
+        'phone',
+        'address',
         'password_hash',
         'reset_hash',
         'reset_at',
@@ -34,6 +36,7 @@ class UserModel extends Model
     ];
     protected $useTimestamps = true;
     protected $validationRules = [
+        'id' => 'permit_empty',
         'email' => 'required|valid_email|is_unique[users.email,id,{id}]',
         'username' => 'required|alpha_numeric_punct|min_length[3]|max_length[30]|is_unique[users.username,id,{id}]',
         'password_hash' => 'required',
@@ -60,6 +63,11 @@ class UserModel extends Model
             ->findAll();
     }
 
+    //menapilahkan jumlah user
+    public function getJumlahUser()
+    {
+        return $this->countAll(); // Menghitung semua baris di tabel user
+    }
 
     /**
      * The id of a group to assign.
@@ -153,4 +161,5 @@ class UserModel extends Model
             'password' => bin2hex(random_bytes(16)),
         ]);
     }
+  
 }

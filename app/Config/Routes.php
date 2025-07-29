@@ -6,6 +6,7 @@ use App\Controllers\Donatur\HomeDonatur;
 use App\Controllers\Donatur\InginDonasi;
 use App\Controllers\Donatur\Riwayat;
 use App\Controllers\Donatur\Laporan;
+use App\Controllers\Profile\ProfileController;
 use App\Controllers\Pengurus\DataDonatur;
 use App\Controllers\Pengurus\LaporanDonasi;
 use App\Controllers\Pengurus\RiwayatDonasi;
@@ -23,8 +24,8 @@ $routes->group('pengurus', ['filter' => 'role:pengurus'], function ($routes) {
     $routes->get('data-donatur', [DataDonatur::class, 'index']);
     $routes->get('riwayat-donasi', [RiwayatDonasi::class, 'RiwayatDonasi']);
     $routes->get('laporan-donasi', [LaporanDonasi::class, 'LaporanDonasi']);
-    $routes->get('laporan-donasi/exportExcel', 'Pengurus\LaporanDonasi::exportExcel');
-
+    $routes->get('profile', [ProfileController::class, 'index']);
+    $routes->get('laporan-donasi/exportExcel', [LaporanDonasi::class, 'exportExcel']);
 });
 
 $routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {
@@ -32,14 +33,14 @@ $routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {
     $routes->get('laporan-donatur', [Laporan::class, 'index']);
     $routes->get('riwayat-donatur', [Riwayat::class, 'index']);
     $routes->get('ingin-donasi', [InginDonasi::class, 'index']);
+    $routes->get('profile', [ProfileController::class, 'index']);
     $routes->post('donasi/simpan', [InginDonasi::class, 'create']);
     $routes->post('donasi/payment', [InginDonasi::class, 'payment']);
-
+    $routes->post('profile/update', [ProfileController::class, 'update']);
 });
 
 
 $routes->group('', ['namespace' => 'App\Controllers\Auth'], static function ($routes) {
-    // Load the reserved routes from Auth.php
     $config = config(AuthConfig::class);
     $reservedRoutes = $config->reservedRoutes;
 

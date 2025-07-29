@@ -14,13 +14,15 @@
             </li>
         <?php endif ?>
 
-        <?php foreach ($pager->links() as $link): ?>
-            <li class="page-item <?= $link['active'] ? 'active' : '' ?>">
-                <a class="page-link" href="<?= $link['uri'] ?>">
-                    <?= $link['title'] ?>
-                </a>
-            </li>
-        <?php endforeach ?>
+        <?php if ($pager->getTotal() > 1): ?>
+            <?php foreach ($pager->links() as $link): ?>
+                <li class="page-item <?= $link['active'] ? 'active' : '' ?>">
+                    <a class="page-link" href="<?= $link['uri'] ?>">
+                        <?= $link['title'] ?>
+                    </a>
+                </li>
+            <?php endforeach ?>
+        <?php endif ?>
 
         <?php if ($pager->hasNext()): ?>
             <li class="page-item">

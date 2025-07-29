@@ -177,4 +177,5 @@ class DonasiModel extends Model
             ->where('MONTH(tanggal_donasi)', $bulan)
             ->where('YEAR(tanggal_donasi)', $tahun);
     }
+    
 }
