@@ -6,6 +6,8 @@ use CodeIgniter\Entity\Entity;
 use Exception;
 use Myth\Auth\Password;
 use RuntimeException;
+use Myth\Auth\Models\PermissionModel;
+use Myth\Auth\Models\GroupModel;
 
 class User extends \Myth\Auth\Entities\User
 {
