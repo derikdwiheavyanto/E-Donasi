@@ -26,6 +26,9 @@ $routes->group('pengurus', ['filter' => 'role:pengurus'], function ($routes) {
     $routes->get('laporan-donasi', [LaporanDonasi::class, 'LaporanDonasi']);
     $routes->get('profile', [ProfileController::class, 'index']);
     $routes->get('laporan-donasi/exportExcel', [LaporanDonasi::class, 'exportExcel']);
+    $routes->post('riwayat-donasi/delete/(:num)', [RiwayatDonasi::class, 'delete']);
+    $routes->post('penggunaan-dana/store', [HomePengurus::class, 'store']);
+
 });
 
 $routes->group('donatur', ['filter' => 'role:donatur'], function ($routes) {

@@ -78,7 +78,7 @@
                                 <td><?= date('d/m/Y', strtotime($row['tanggal_donasi'])); ?></td>
                                 <td>Rp.<?= number_format($row['nominal'], 0, ',', '.'); ?></td>
                                 <td><?= $row['pembayaran']; ?></td>
-                                <td>Sukses</td> <!-- Jika belum ada kolom status, bisa ditulis manual -->
+                                <td><?= $row['status'] == "settlement" ? "Sukses" : $row['status']; ?></td> <!-- Jika belum ada kolom status, bisa ditulis manual -->
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>

@@ -2,8 +2,17 @@
 <?= $this->extend('layout/layout'); ?>
 <?= $this->section('content'); ?>
 
+
+
 <div class="container-fluid">
-    <h1 class="mt-4"><?= $title; ?></h1>
+   <div class="d-flex justify-content-between align-items-center mt-4 mb-3 flex-wrap">
+        <h1 class="mb-2"><?= $title; ?></h1>
+        <!-- Tombol untuk buka modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPenggunaanDana">
+            + Input Penggunaan Dana
+        </button>
+    </div>
+
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Ringkasan Sistem</li>
     </ol>
@@ -48,6 +57,8 @@
         </div>
     </div>
 
+
+
     <!-- DONASI TERBARU TABLE -->
     <div class="card mb-4">
         <div class="card-header">
@@ -86,6 +97,43 @@
     </div>
 </div>
 
+<!-- Modal Input Penggunaan Dana -->
+<div class="modal fade" id="modalPenggunaanDana" tabindex="-1" aria-labelledby="modalLabelDana" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="<?= base_url('pengurus/penggunaan-dana/store') ?>" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelDana">Input Penggunaan Dana</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label">Tanggal</label>
+                        <input type="date" name="tanggal" id="tanggal" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="deskripsi" class="form-label">Deskripsi</label>
+                        <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jumlah" class="form-label">Jumlah</label>
+                        <input type="number" name="jumlah" id="jumlah" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bukti_foto" class="form-label">Bukti Foto</label>
+                        <input type="file" name="bukti_foto" id="bukti_foto" class="form-control" accept="image/*">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 <?= $this->endSection(); ?>
 
 <?= $this->section('script'); ?>
@@ -108,7 +156,7 @@
         options: {
             tooltips: {
                 callbacks: {
-                    label: function (tooltipItem, data) {
+                    label: function(tooltipItem, data) {
                         var value = tooltipItem.yLabel;
                         value = parseInt(value);
                         var formatted = 'Rp ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -122,7 +170,7 @@
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,
-                        callback: function (value) {
+                        callback: function(value) {
                             return 'Rp ' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                         }
                     }

@@ -131,7 +131,7 @@ class DonasiModel extends Model
      */
     public function getDonasiTerbaru($limit = 5)
     {
-        return $this->select('users.name as nama_donatur, donasi.tanggal_donasi, donasi.nominal')
+        return $this->select('users.username as nama_donatur, donasi.tanggal_donasi, donasi.nominal')
             ->join('users', 'users.id = donasi.id_donatur')
             ->orderBy('tanggal_donasi', 'desc')
             ->limit($limit)
@@ -177,5 +177,42 @@ class DonasiModel extends Model
             ->where('MONTH(tanggal_donasi)', $bulan)
             ->where('YEAR(tanggal_donasi)', $tahun);
     }
-    
+
+    // grafik chart
+    public function getDonasiPerBulan($start = null, $end = null)
+    {
+        $builder = $this->builder();
+        $builder->select("DATE_FORMAT(tanggal_donasi, '%M %Y') as bulan, SUM(nominal) as total");
+        if ($start && $end) {
+            $builder->where('tanggal_donasi >=', $start);
+            $builder->where('tanggal_donasi <=', $end);
+        }
+        $builder->groupBy('bulan');
+        $builder->orderBy('MIN(tanggal_donasi)');
+
+        $result = [];
+        foreach ($builder->get()->getResultArray() as $row) {
+            $result[$row['bulan']] = (int)$row['total'];
+        }
+        return $result;
+    }
+    public function getAllDonasiWithUser($paginate = null, $group = 'donasi')
+    {
+        $builder = $this->db->table('donasi')
+            ->select('donasi.*, users.name as nama_donatur')
+            ->join('users', 'users.id = donasi.id_donatur')
+            ->orderBy('donasi.tanggal_donasi', 'DESC');
+
+        if ($paginate) {
+            return $builder->get()->getResultArray(); // jika tidak pakai pagination
+        }
+
+        return $builder->get()->getResultArray();
+    }
+
+    //delete
+    public function deleteByDonaturId($donaturId)
+    {
+        return $this->where('id_donatur', $donaturId)->delete();
+    }
 }
