@@ -146,7 +146,7 @@
                             <div class="modal-body">
                                 <div class="mt-3">
                                     <strong>Foto Bukti:</strong><br>
-                                    <img id="modalFoto" style="width: 100%;" src=<?= base_url("uploads/penggunaan/". $p['bukti_foto']) ?> >           
+                                    <img id="modalFoto" style="width: 100%;" src=<?= base_url("uploads/bukti_penggunaan/". $p['bukti_foto']) ?> >           
                                 </div>
                             </div>
                         </div>

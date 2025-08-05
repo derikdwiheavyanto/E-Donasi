@@ -182,20 +182,23 @@ class DonasiModel extends Model
     public function getDonasiPerBulan($start = null, $end = null)
     {
         $builder = $this->builder();
-        $builder->select("DATE_FORMAT(tanggal_donasi, '%M %Y') as bulan, SUM(nominal) as total");
+        $builder->select("DATE_FORMAT(tanggal_donasi, '%Y-%m') as bulan_id, DATE_FORMAT(tanggal_donasi, '%M %Y') as bulan_label, SUM(nominal) as total");
+
         if ($start && $end) {
             $builder->where('tanggal_donasi >=', $start);
             $builder->where('tanggal_donasi <=', $end);
         }
-        $builder->groupBy('bulan');
-        $builder->orderBy('MIN(tanggal_donasi)');
+
+        $builder->groupBy('bulan_id');
+        $builder->orderBy('bulan_id', 'ASC');
 
         $result = [];
         foreach ($builder->get()->getResultArray() as $row) {
-            $result[$row['bulan']] = (int)$row['total'];
+            $result[$row['bulan_label']] = (int)$row['total'];
         }
         return $result;
     }
+
     public function getAllDonasiWithUser($paginate = null, $group = 'donasi')
     {
         $builder = $this->db->table('donasi')

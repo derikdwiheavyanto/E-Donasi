@@ -60,8 +60,9 @@ class Laporan extends BaseController
 
         // Ambil semua bulan dari kedua sumber
         $all_bulan = array_unique(array_merge(array_keys($donasi_per_bulan), array_keys($penggunaan_per_bulan)));
-        sort($all_bulan); // urutkan
-
+        usort($all_bulan, function ($a, $b) {
+            return strtotime("1 $a") - strtotime("1 $b");
+        });
         // Susun ulang data sesuai urutan bulan
         $chart_donasi = [];
         $chart_penggunaan = [];

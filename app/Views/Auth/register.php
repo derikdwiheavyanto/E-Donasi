@@ -34,6 +34,17 @@
             </div>
         <?php endif; ?>
 
+        <!-- ✅ FIELD NAMA LENGKAP -->
+        <div class="form-group">
+            <label for="name">Nama Lengkap</label>
+            <input type="text" id="name" name="name"
+                class="form-control <?= session('errors.name') ? 'is-invalid' : '' ?>"
+                value="<?= old('name') ?>" placeholder="Nama lengkap Anda" autocomplete="off">
+            <?php if (session('errors.name')) : ?>
+                <div class="invalid-feedback"><?= session('errors.name') ?></div>
+            <?php endif; ?>
+        </div>
+
         <div class="form-group">
             <label for="email">Email address</label>
             <input type="email" id="email" name="email"
