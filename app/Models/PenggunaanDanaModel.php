@@ -22,7 +22,7 @@ class PenggunaanDanaModel extends Model
         if ($start && $end) {
             $row = $this->select('tanggal, deskripsi, jumlah, bukti_foto')
                 ->where('tanggal >=', $start)
-                ->where('tanggal <=', $end)->groupBy()
+                ->where('tanggal <=', $end)
                 ->orderBy('tanggal', $direction)
                 ->orderBy('created_at', 'DESC');
 
@@ -45,7 +45,7 @@ class PenggunaanDanaModel extends Model
     public function filterPengeluaranByDate($bulan, $tahun)
     {
         return $this->where('MONTH(tanggal)', $bulan)
-            ->where('YEAR(tanggal)', $tahun);
+            ->where('YEAR(tanggal)', $tahun) -> orderBy( 'tanggal', 'DESC');
     }
 
     public function getTotalDanaTerpakai($start = null, $end = null)

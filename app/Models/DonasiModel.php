@@ -131,7 +131,7 @@ class DonasiModel extends Model
      */
     public function getDonasiTerbaru($limit = 5)
     {
-        return $this->select('users.username as nama_donatur, donasi.tanggal_donasi, donasi.nominal')
+        return $this->select('users.name as nama_donatur, donasi.tanggal_donasi, donasi.nominal')
             ->join('users', 'users.id = donasi.id_donatur')
             ->orderBy('tanggal_donasi', 'desc')
             ->limit($limit)
@@ -178,7 +178,20 @@ class DonasiModel extends Model
             ->where('YEAR(tanggal_donasi)', $tahun);
     }
 
-    // grafik chart
+    
+    /**
+     * Mengambil data donasi per bulan.
+     *
+     * Fungsi ini menghasilkan data donasi per bulan dalam bentuk array asosiatif.
+     * Setiap key array berisi nama bulan (format 'M Y'), dan nilai array berisi total nominal donasi
+     * selama bulan tersebut.
+     *
+     * @param string|null $start Tanggal awal (format 'Y-m-d') untuk mengambil data donasi.
+     *                           Jika null, maka data akan diambil dari awal waktu.
+     * @param string|null $end Tanggal akhir (format 'Y-m-d') untuk mengambil data donasi.
+     *                         Jika null, maka data akan diambil hingga akhir waktu.
+     * @return array Data donasi per bulan dalam bentuk array asosiatif.
+     */
     public function getDonasiPerBulan($start = null, $end = null)
     {
         $builder = $this->builder();
@@ -199,6 +212,21 @@ class DonasiModel extends Model
         return $result;
     }
 
+    /**
+     * Mengambil semua data donasi beserta nama donatur-nya.
+     *
+     * Fungsi ini menghasilkan query builder yang mengambil semua data donasi
+     * beserta nama donatur-nya dari tabel users. Data diurutkan berdasarkan
+     * tanggal donasi secara descending (paling baru di atas).
+     *
+     * Jika parameter $paginate diisi, maka fungsi ini akan mengembalikan
+     * hasil pagination dari data donasi. Jika tidak, maka fungsi ini
+     * akan mengembalikan semua data donasi dalam bentuk array.
+     *
+     * @param int|null $paginate Jumlah data yang ingin diambil per halaman.
+     * @param string $group Nama grup yang ingin diambil. Default: 'donasi'.
+     * @return array|null Hasil query dalam bentuk array, atau null jika tidak ada data.
+     */
     public function getAllDonasiWithUser($paginate = null, $group = 'donasi')
     {
         $builder = $this->db->table('donasi')
@@ -213,7 +241,17 @@ class DonasiModel extends Model
         return $builder->get()->getResultArray();
     }
 
-    //delete
+    
+    /**
+     * Menghapus semua data donasi yang terkait dengan ID donatur tertentu.
+     *
+     * Method ini akan menghapus semua entri donasi dalam database yang memiliki
+     * id_donatur yang sesuai dengan parameter yang diberikan.
+     *
+     * @param int|string $donaturId ID dari donatur yang data donasinya ingin dihapus.
+     * @return bool True jika penghapusan berhasil, false jika gagal.
+     */
+
     public function deleteByDonaturId($donaturId)
     {
         return $this->where('id_donatur', $donaturId)->delete();
