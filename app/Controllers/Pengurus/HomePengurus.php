@@ -41,4 +41,25 @@ class HomePengurus extends BaseController
         return view('menu/pengurus/dashboard/view_dashboard_pengurus', ['title' => 'Dashboard Pengurus', 'data' => $data]);
     }
 
+    public function store()
+    {
+        $penggunaan = new PenggunaanDanaModel();
+
+        $file = $this->request->getFile('bukti_foto');
+        $buktiFotoName = null;
+
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $buktiFotoName = $file->getRandomName();
+            $file->move('uploads/bukti_penggunaan', $buktiFotoName);
+        }
+
+        $penggunaan->insert([
+            'tanggal'    => $this->request->getPost('tanggal'),
+            'deskripsi'  => $this->request->getPost('deskripsi'),
+            'jumlah'     => $this->request->getPost('jumlah'),
+            'bukti_foto' => $buktiFotoName,
+        ]);
+
+        return redirect()->back()->with('success', 'Data penggunaan dana berhasil disimpan.');
+    }
 }

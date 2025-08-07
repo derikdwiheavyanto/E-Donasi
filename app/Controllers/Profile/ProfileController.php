@@ -20,7 +20,7 @@ class ProfileController extends BaseController
 
     public function index()
     {
-        $userId = user_id(); // Ambil ID user dari session (Myth:Auth)
+        $userId = user_id(); 
         if (!$userId) {
             return redirect()->to('/login');
         }

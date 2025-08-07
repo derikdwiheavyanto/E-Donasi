@@ -146,7 +146,7 @@
                             <div class="modal-body">
                                 <div class="mt-3">
                                     <strong>Foto Bukti:</strong><br>
-                                    <img id="modalFoto" style="width: 100%;" src=<?= $p['bukti_foto'] ?> >           
+                                    <img id="modalFoto" style="width: 100%;" src=<?= base_url("uploads/bukti_penggunaan/". $p['bukti_foto']) ?> >           
                                 </div>
                             </div>
                         </div>
@@ -157,12 +157,12 @@
     </div>
 
     <!-- Notifikasi Update -->
-    <div class="alert alert-info">
+    <!-- <div class="alert alert-info">
         <strong>Update!</strong> Laporan keuangan bulan Juni telah diperbarui pada 5 Juli 2025.
-    </div>
+    </div> -->
 
     <!-- Tabel Donasi Publik (Tanpa Nama Lengkap) -->
-    <div class="card mb-4">
+    <!-- <div class="card mb-4">
         <div class="card-header">Donasi Publik</div>
         <div class="card-body table-responsive">
             <table class="table table-sm table-bordered">
@@ -190,7 +190,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> -->
 
 </div>
 
@@ -198,14 +198,19 @@
 
 <?= $this->section('script'); ?>
 <script>
+    const labels = <?= json_encode($chart_labels) ?>;
+    const dataMasuk = <?= json_encode($chart_donasi) ?>;
+    const dataKeluar = <?= json_encode($chart_penggunaan) ?>;
+
     const ctx = document.getElementById('chartDonasi').getContext('2d');
     const chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul'],
-            datasets: [{
+            labels: labels,
+            datasets: [
+                {
                     label: 'Dana Masuk (Rp)',
-                    data: [2000000, 1500000, 1800000, 2200000, 1200000, 2000000, 1000000],
+                    data: dataMasuk,
                     borderColor: 'rgba(54, 162, 235, 1)',
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     tension: 0.4,
@@ -213,7 +218,7 @@
                 },
                 {
                     label: 'Penggunaan Dana (Rp)',
-                    data: [1000000, 800000, 900000, 1700000, 1000000, 1500000, 800000],
+                    data: dataKeluar,
                     borderColor: 'rgba(255, 99, 132, 1)',
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     tension: 0.4,
@@ -228,12 +233,9 @@
                     callbacks: {
                         label: function(context) {
                             let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            if (context.parsed.y !== null) {
+                            if (label) label += ': ';
+                            if (context.parsed.y !== null)
                                 label += 'Rp. ' + context.parsed.y.toLocaleString();
-                            }
                             return label;
                         }
                     }

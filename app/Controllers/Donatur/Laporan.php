@@ -37,15 +37,15 @@ class Laporan extends BaseController
                 ->selectSum('jumlah')
                 ->first()['jumlah'] ?? 0;
 
-            $data_penggunaan = $penggunaan->getKeterangan($start, $end) -> paginate(5, 'penggunaan');
-
+            $data_penggunaan = $penggunaan->getKeterangan($start, $end)->paginate(5, 'penggunaan');
         } else {
             // Jika tidak ada filter tanggal, ambil semua
             $total_donasi_masuk = $donasi->selectSum('nominal')->first()['nominal'] ?? 0;
             $total_donasi_terpakai = $penggunaan->getTotalDanaTerpakai();
-            $data_penggunaan = $penggunaan->getKeterangan() -> paginate(5, 'penggunaan');
+            $data_penggunaan = $penggunaan->getKeterangan()->paginate(5, 'penggunaan');
         }
 
+        //untuk chart grafiknya
         $sisa_dana = $total_donasi_masuk - $total_donasi_terpakai;
         $jumlah_user = $user->getJumlahUser();
 
@@ -53,6 +53,24 @@ class Laporan extends BaseController
         if ($total_donasi_masuk > 0) {
             $persentase_terpakai = ($total_donasi_terpakai / $total_donasi_masuk) * 100;
         }
+
+        // Persiapkan data untuk grafik
+        $donasi_per_bulan = $donasi->getDonasiPerBulan($start, $end);
+        $penggunaan_per_bulan = $penggunaan->getPenggunaanPerBulan($start, $end);
+
+        // Ambil semua bulan dari kedua sumber
+        $all_bulan = array_unique(array_merge(array_keys($donasi_per_bulan), array_keys($penggunaan_per_bulan)));
+        usort($all_bulan, function ($a, $b) {
+            return strtotime("1 $a") - strtotime("1 $b");
+        });
+        // Susun ulang data sesuai urutan bulan
+        $chart_donasi = [];
+        $chart_penggunaan = [];
+        foreach ($all_bulan as $bulan) {
+            $chart_donasi[] = $donasi_per_bulan[$bulan] ?? 0;
+            $chart_penggunaan[] = $penggunaan_per_bulan[$bulan] ?? 0;
+        }
+
 
         return view('menu/donatur/view_laporan_donatur', [
             'total_donasi_masuk' => $total_donasi_masuk,
@@ -63,6 +81,9 @@ class Laporan extends BaseController
             'start' => $start,
             'end' => $end,
             'penggunaan' => $data_penggunaan,
+            'chart_labels' => $all_bulan,
+            'chart_donasi' => $chart_donasi,
+            'chart_penggunaan' => $chart_penggunaan,
             'pager' => $penggunaan->pager
         ]);
     }
